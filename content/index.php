@@ -46,15 +46,15 @@
             <div class="container">
                 <div class="row g-4 text-center">
                     <div class="col-6 col-md-3 reveal">
-                        <div class="stat-number">500+</div>
+                        <div class="stat-number"><span data-count="500">500</span>+</div>
                         <div class="stat-label">Active Members</div>
                     </div>
                     <div class="col-6 col-md-3 reveal">
-                        <div class="stat-number">20+</div>
+                        <div class="stat-number"><span data-count="20">20</span>+</div>
                         <div class="stat-label">Expert Trainers</div>
                     </div>
                     <div class="col-6 col-md-3 reveal">
-                        <div class="stat-number">50+</div>
+                        <div class="stat-number"><span data-count="50">50</span>+</div>
                         <div class="stat-label">Weekly Classes</div>
                     </div>
                     <div class="col-6 col-md-3 reveal">
@@ -116,7 +116,7 @@
         <section id="membership-section" class="membership-section text-center">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="eyebrow eyebrow-dark">Pricing</span>
+                    <span class="eyebrow">Pricing</span>
                     <h2>Choose Your Membership</h2>
                     <p>Simple monthly plans with no joining fees. Pick what fits your routine.</p>
                 </div>
@@ -178,7 +178,7 @@
         <section class="content-section" id="workout-plan">
             <div class="container">
                 <div class="row align-items-center g-5">
-                    <div class="col-lg-6 reveal">
+                    <div class="col-lg-6 reveal reveal-left">
                         <span class="eyebrow">Free program</span>
                         <h2>4 Week <br>Workout Plan</h2>
                         <p>
@@ -188,10 +188,12 @@
                         <a href="contact.php" class="btn btn-brand">Try For Free</a>
                     </div>
 
-                    <div class="col-lg-6 reveal">
+                    <div class="col-lg-6 reveal reveal-right">
                         <div class="row g-4">
                             <div class="col-12">
-                                <img src="../img/indexImg/pexels-anastasia-shuraeva-4944435.jpg" alt="Member performing a strength workout" class="img-fluid plan-image" loading="lazy" width="800" height="500">
+                                <div class="img-zoom">
+                                    <img src="../img/indexImg/pexels-anastasia-shuraeva-4944435.jpg" alt="Member performing a strength workout" class="img-fluid plan-image" loading="lazy" width="800" height="500">
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card-custom">

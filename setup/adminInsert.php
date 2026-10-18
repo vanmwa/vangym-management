@@ -1,5 +1,5 @@
 <?php
-include("config/config.php"); // make sure this connects to your DB
+include("../config/config.php"); // make sure this connects to your DB
 
 // --- Default admin credentials ---
 $admin_username = "AdminIan";
