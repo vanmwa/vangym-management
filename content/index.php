@@ -34,7 +34,7 @@
                     Whether you're just starting out or chasing a new personal best, there's a place for you here.
                 </p>
                 <div class="hero-actions">
-                    <a href="../log_reg/log_reg.php" class="btn btn-brand">Join Now</a>
+                    <a href="../log_reg/log_reg.php#signup" class="btn btn-brand">Join Now</a>
                     <a href="membership.php" class="btn btn-outline-light-custom">View Memberships</a>
                 </div>
             </div>
@@ -134,7 +134,7 @@
                                 <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>3 Classes Per Week</li>
                                 <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>No joining fees</li>
                             </ul>
-                            <a href="../log_reg/log_reg.php" class="btn btn-brand w-100">Join Today</a>
+                            <a href="../log_reg/log_reg.php#signup" class="btn btn-brand w-100">Join Today</a>
                         </div>
                     </div>
 
@@ -150,7 +150,7 @@
                                 <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>3 Classes Per Day</li>
                                 <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>No joining fees</li>
                             </ul>
-                            <a href="../log_reg/log_reg.php" class="btn btn-brand w-100">Join Today</a>
+                            <a href="../log_reg/log_reg.php#signup" class="btn btn-brand w-100">Join Today</a>
                         </div>
                     </div>
 
@@ -165,7 +165,7 @@
                                 <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>5 Classes Per Week</li>
                                 <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>No joining fees</li>
                             </ul>
-                            <a href="../log_reg/log_reg.php" class="btn btn-brand w-100">Join Today</a>
+                            <a href="../log_reg/log_reg.php#signup" class="btn btn-brand w-100">Join Today</a>
                         </div>
                     </div>
 
@@ -253,7 +253,7 @@
             <div class="container text-center reveal">
                 <h2>Ready to Start Your Journey?</h2>
                 <p>Create your account in minutes and book your first class today.</p>
-                <a href="../log_reg/log_reg.php" class="btn btn-dark-custom">Join Evolve Fit</a>
+                <a href="../log_reg/log_reg.php#signup" class="btn btn-dark-custom">Join Evolve Fit</a>
             </div>
         </section>
 

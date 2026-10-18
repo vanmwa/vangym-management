@@ -1,165 +1,470 @@
-/* faq overlay*/
-.faq-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(44, 62, 80, 0.4);
-  top: 0;
-  left: 0;
+/* ================================
+   Design tokens (shared with landing page)
+================================= */
+:root {
+    --brand: #9fdc35;
+    --brand-dark: #7fc02b;
+    --brand-light: #b6e54d;
+    --bg-dark: #0b0b0b;
+    --bg-surface: #151515;
+    --bg-card: #1e1e1e;
+    --text-muted: #a8a8a8;
+    --radius: 14px;
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.hero-content {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  display: flex;
-  align-items: center;
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-dark);
+    color: #fff;
+}
+
+section[id] { scroll-margin-top: 90px; }
+
+/* ================================
+   Accessibility
+================================= */
+.skip-link {
+    position: fixed;
+    top: -60px;
+    left: 1rem;
+    z-index: 2000;
+    background: var(--brand);
+    color: #111;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: top 0.2s;
+}
+.skip-link:focus { top: 1rem; }
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 3px;
 }
 
 /* ================================
-   FAQ Section Styling
-================================ */
+   Type and buttons
+================================= */
+.eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+}
+
+.btn-dark-custom {
+    font-weight: 700;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.9rem;
+    background: #111;
+    color: #fff;
+    border: 2px solid #111;
+    transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s var(--ease);
+}
+
+.btn-dark-custom:hover,
+.btn-dark-custom:focus-visible {
+    background: #fff;
+    color: #111;
+    border-color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn:active { transform: translateY(0) scale(0.97); }
+
+.btn-link-dark {
+    color: #111;
+    font-weight: 700;
+    margin-left: 0.75rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.btn-link-dark:hover { color: #000; }
+
+/* ================================
+   Hero (photo right, fades into dark)
+================================= */
+.faq-hero {
+    position: relative;
+    min-height: 62vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 8rem 0 4.5rem;
+    background: var(--bg-dark);
+}
+
+.faq-hero-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 62%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transform-origin: center top;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 28%);
+            mask-image: linear-gradient(to right, transparent 0, #000 28%);
+    animation: kenBurns 18s ease-out both;
+}
+
+.faq-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(11, 11, 11, 0.7), transparent 40%);
+}
+
+.faq-hero-content { position: relative; z-index: 1; }
+
+.faq-hero h1 {
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.faq-hero h1 .accent { color: var(--brand); }
+
+.faq-hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: #e6e6e6;
+    margin: 0;
+}
+
+@media (min-width: 992px) {
+    .faq-hero-content > * { max-width: 520px; }
+}
+
+.crumbs {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.crumbs li + li::before { content: "/"; margin-right: 0.5rem; color: #666; }
+.crumbs a { color: var(--brand); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+@media (max-width: 991.98px) {
+    .faq-hero-img {
+        width: 100%;
+        -webkit-mask-image: none;
+                mask-image: none;
+        opacity: 0.35;
+    }
+    .faq-hero-overlay {
+        background: linear-gradient(to top, rgba(11, 11, 11, 0.95), rgba(11, 11, 11, 0.4));
+    }
+}
+
+/* ================================
+   FAQ section
+================================= */
 .faq-section {
-  padding: 80px 0;
+    background: var(--bg-dark);
+    padding: 5rem 0 5.5rem;
 }
 
-.faq-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 50px;
-  text-align: center;
-  color: #222;
+.faq-wrap { max-width: 860px; }
+
+.faq-tools { margin-bottom: 2rem; }
+
+.search-box {
+    position: relative;
+    margin-bottom: 1.25rem;
 }
 
-/* Accordion Layout - 2 Columns */
+.search-box i {
+    position: absolute;
+    top: 50%;
+    left: 1.1rem;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.search-box input {
+    width: 100%;
+    background: var(--bg-surface);
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 999px;
+    padding: 0.95rem 1.25rem 0.95rem 2.9rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.search-box input::placeholder { color: #777; }
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 4px rgba(159, 220, 53, 0.18);
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.chip {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #3a3a3a;
+    border-radius: 999px;
+    padding: 0.5rem 1.2rem;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s var(--ease);
+}
+
+.chip:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+    transform: translateY(-2px);
+}
+
+.chip.active {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #111;
+}
+
+/* Accordion */
 #faqAccordion {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px 40px; /* Row and column spacing */
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
 }
 
 .faq-item {
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  background-color: #fff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: var(--bg-surface);
+    border: 1px solid #2a2a2a !important;
+    border-radius: var(--radius) !important;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s var(--ease);
 }
+
+.faq-item[hidden] { display: none; }
 
 .faq-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-color: rgba(159, 220, 53, 0.45) !important;
+    transform: translateY(-2px);
 }
 
-/* Accordion Button */
+.faq-item:has(.accordion-button:not(.collapsed)) {
+    border-color: var(--brand) !important;
+    box-shadow: 0 0 30px rgba(159, 220, 53, 0.12);
+}
+
 .accordion-button {
-  font-weight: 500;
-  font-size: 1rem;
-  background-color: #fff;
-  color: #333;
-  padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    background: transparent;
+    color: #fff;
+    font-family: inherit;
+    padding: 1.15rem 3.25rem 1.15rem 1.5rem;
+    box-shadow: none;
+    position: relative;
 }
 
 .accordion-button:not(.collapsed) {
-  background-color: #f8f9fa;
-  color: #000;
-  box-shadow: none;
+    background: rgba(159, 220, 53, 0.06);
+    color: #fff;
+    box-shadow: none;
 }
 
-/* Remove default Bootstrap border */
-.accordion-button:focus {
-  box-shadow: none;
-  border-color: transparent;
+.accordion-button:focus { box-shadow: none; }
+
+.accordion-button:focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: -3px;
 }
 
-/* Accordion Body */
+/* Custom plus/minus icon replaces Bootstrap chevron */
+.accordion-button::after {
+    position: absolute;
+    right: 1.4rem;
+    top: 50%;
+    margin: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    background-image: none;
+    content: "+";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #111;
+    background-color: var(--brand);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s var(--ease);
+}
+
+.accordion-button:not(.collapsed)::after {
+    content: "\2212";
+    background-image: none;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.q-cat {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brand);
+}
+
+.q-text {
+    font-size: 1.02rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
 .accordion-body {
-  padding: 20px;
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.6;
-  background-color: #fff;
+    padding: 0.5rem 1.5rem 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #d0d0d0;
+    background: transparent;
 }
 
-/* Responsive Layout */
-@media (max-width: 992px) {
-  #faqAccordion {
-    grid-template-columns: 1fr; /* Stack to one column on smaller screens */
-  }
+.accordion-body a {
+    color: var(--brand);
+    font-weight: 700;
+}
+
+.accordion-body a:hover { color: var(--brand-light); }
+
+.no-results {
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 2rem;
+}
+
+.no-results a { color: var(--brand); font-weight: 700; }
+
+/* ================================
+   Help CTA
+================================= */
+.help-cta {
+    background: linear-gradient(120deg, var(--brand), var(--brand-dark), var(--brand-light), var(--brand));
+    background-size: 300% 300%;
+    animation: gradientShift 14s ease-in-out infinite;
+    color: #111;
+    padding: 4.5rem 0;
+}
+
+.help-icon {
+    display: inline-block;
+    font-size: 2.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.help-cta h2 {
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+}
+
+.help-cta p { font-size: 1.1rem; margin-bottom: 2rem; color: #111; }
+
+/* ================================
+   Motion
+================================= */
+@keyframes kenBurns {
+    from { transform: scale(1); }
+    to   { transform: scale(1.04); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+.faq-hero-content > * { animation: fadeUp 0.8s var(--ease) both; }
+.faq-hero-content > :nth-child(1) { animation-delay: 0.05s; }
+.faq-hero-content > :nth-child(2) { animation-delay: 0.15s; }
+.faq-hero-content > :nth-child(3) { animation-delay: 0.3s; }
+.faq-hero-content > :nth-child(4) { animation-delay: 0.45s; }
+
+.faq-item { animation: fadeUp 0.5s var(--ease) both; }
+
+.js .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.js .reveal.visible { opacity: 1; transform: none; }
+
+header .navbar-custom { transition: padding 0.3s var(--ease), box-shadow 0.3s; }
+header.scrolled .navbar-custom {
+    padding: 0.45rem 2rem;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.75);
 }
 
 /* ================================
-   FAQ Hero Section Animations
-================================ */
-
-/* Make sure hero has proper positioning */
-.faq-hero {
-  position: relative;
-  height: 100vh; /* make image fit screen */
-  background-image: url('../img/faqImg/pexels-tima-miroshnichenko-5711173.jpg'); /* replace with your actual image path */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
+   Responsive
+================================= */
+@media (max-width: 576px) {
+    .faq-hero { padding: 7rem 0 3.5rem; }
+    .accordion-button { padding: 1rem 3rem 1rem 1.1rem; }
+    .accordion-body { padding: 0.25rem 1.1rem 1.25rem; }
+    .btn-link-dark { display: block; margin: 1rem 0 0; }
 }
 
-/* Overlay */
-.faq-hero .faq-overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(44, 62, 80, 0.5); /* same color as other pages */
-  z-index: 0;
-  opacity: 0;
-  animation: overlayFadeIn 0.8s ease-out forwards;
-}
-
-/* Overlay animation (reusable) */
-@keyframes overlayFadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Text Animations */
-@keyframes fadeDownIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeUpIn {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Apply to text */
-.faq-hero h1 {
-  position: relative;
-  z-index: 1;
-  opacity: 0;
-  animation: fadeDownIn 0.8s ease-out 0.2s forwards;
-}
-
-.faq-hero p {
-  position: relative;
-  z-index: 1;
-  opacity: 0;
-  animation: fadeUpIn 0.8s ease-out 0.4s forwards;
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    .js .reveal { opacity: 1; transform: none; }
 }
