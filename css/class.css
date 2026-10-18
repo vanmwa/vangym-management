@@ -1,0 +1,147 @@
+/* Intro Section */
+.intro-section h2 {
+  letter-spacing: 1px;
+}
+.intro-section p {
+  font-size: 1.1rem;
+}
+
+/* Explore Heading */
+.explore-heading h1 {
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+
+/* Class Cards */
+.class-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+.class-card img {
+  height: 220px;
+  object-fit: cover;
+}
+.class-card .card-body {
+  padding: 20px;
+}
+.class-card .card-text {
+  color: #555;
+  font-size: 15px;
+}
+.class-btn {
+  border-radius: 30px;
+}
+
+/* Banner Card */
+.banner-card {
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+}
+.banner-card img {
+  height: 300px;
+  object-fit: cover;
+}
+.banner-overlay {
+  background: linear-gradient(to right, rgba(49, 143, 81, 0.7), rgba(31, 29, 29, 0.56), rgba(248, 247, 246, 0.7));
+}
+.banner-overlay h2 span {
+  color: #FFD700;
+}
+.banner-btn {
+  border-radius: 30px;
+}
+
+/* ==============================
+   Gym Classes Hero Animation
+============================== */
+
+/* Overlay zoom-in animation */
+@keyframes gymOverlayZoomIn {
+  0% {
+    transform: scale(1.25);
+    opacity: 0;
+    background-color: rgba(44, 62, 80, 0.2);
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 1;
+    background-color: rgba(44, 62, 80, 0.45);
+  }
+}
+
+/* Hero section fixes */
+.gym-classes-hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Overlay styling (fixes gray line & ensures animation) */
+.gym-classes-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(44, 62, 80, 0.25);
+  z-index: 0;
+  animation: gymOverlayZoomIn 0.6s ease-out forwards;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+/* Prevent unwanted gaps or scrollbars */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ==============================
+   Text Animations
+============================== */
+@keyframes fadeUpIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDownIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply to texts */
+.gym-classes-hero h1 {
+  animation: fadeDownIn 0.55s ease-out forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.gym-classes-hero p {
+  animation: fadeUpIn 0.55s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+  position: relative;
+  z-index: 2;
+}

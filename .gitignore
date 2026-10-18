@@ -1,0 +1,9 @@
+# Local database credentials (use config/config.example.php as a template)
+config/config.php
+
+.env
+*.log
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
